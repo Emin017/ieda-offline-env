@@ -20,7 +20,7 @@ jobs:
         run: nix flake check # we only check on x86_64-linux, the iEDA build is not supported on darwin.
 
   buildBin:
-    name: Build on ${{ matrix.os }}
+    name: Build Binary on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -37,7 +37,7 @@ jobs:
           path: result/bin/*
 
   buildBundle:
-    name: Build on ${{ matrix.os }}
+    name: Build Bundle on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -54,7 +54,7 @@ jobs:
           path: rpm-single-nix-env-wrapper-bin-nix-env-wrapper/*.rpm
 
   buildDocker:
-    name: Build on ${{ matrix.os }}
+    name: Build Docker on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
