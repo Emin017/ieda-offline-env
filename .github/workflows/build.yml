@@ -33,7 +33,7 @@ jobs:
       - name: Build iEDA Bundle
         run: nix bundle -L --bundler github:NixOS/bundlers#toRPM '.#ieda'
       - name: Upload iEDA Offline Bundle
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: iEDA-Offline-Bundle-RPM
           path: rpm-single-ieda/*.rpm
@@ -50,7 +50,7 @@ jobs:
       - name: Build iEDA Release Docker
         run: nix build -L '.#releaseDocker'
       - name: Upload iEDA Release Docker
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: iEDA-Release-Docker
           path: result
