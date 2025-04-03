@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4.6.1
         with:
           name: iEDA-Offline-Bundle-rpm
-          path: rpm-single-nix-env-wrapper-bin-nix-env-wrapper/*.rpm
+          path: rpm-single-ieda/*.rpm
 
   build-docker:
     name: Build Docker on ${{ matrix.os }}
