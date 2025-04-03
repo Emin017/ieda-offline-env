@@ -32,10 +32,10 @@ jobs:
         run: nix build -L '.#ieda'
       - name: Build iEDA Bundle
         run: nix bundle -L --bundler github:NixOS/bundlers#toRPM '.#ieda'
-      - name: Upload iEDA offline bundle
+      - name: Upload iEDA Offline Bundle
         uses: actions/upload-artifact@v4.6.1
         with:
-          name: iEDA-Offline-Bundle-rpm
+          name: iEDA-Offline-Bundle-RPM
           path: rpm-single-ieda/*.rpm
 
   build-docker:
