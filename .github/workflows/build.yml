@@ -20,7 +20,7 @@ jobs:
         run: nix flake check # we only check on x86_64-linux, the iEDA build is not supported on darwin.
 
   build-bundle:
-    name: Build Binary on ${{ matrix.os }}
+    name: Build Binary Bundle on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
