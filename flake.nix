@@ -25,6 +25,7 @@
       ];
       perSystem =
         {
+          self',
           config,
           pkgs,
           system,
@@ -63,6 +64,14 @@
               mkShell {
                 buildInputs = [
                   nixd
+                ];
+              };
+            ieda =
+              with pkgs;
+              mkShell {
+                inputsFrom = [ self'.packages.default ];
+                buildInputs = [
+                  cmake
                 ];
               };
           };
