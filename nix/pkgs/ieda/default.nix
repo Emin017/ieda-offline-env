@@ -8,6 +8,7 @@ lib.makeScope newScope (scope: {
   iedaSrc = iedaSrcFetcher {
     pr = null;
     iedaVersion = "0.1.0";
+    hash = null;
     remoteUrl = "https://gitee.com/oscc-project/iEDA";
   };
   rustpkgs = scope.callPackage ./rustpkgs { iedaSrc = scope.iedaSrc; };
