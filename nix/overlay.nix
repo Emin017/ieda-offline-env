@@ -1,8 +1,4 @@
-final: prev:
-let
-  iedaSrc = prev.callPackage ./pkgs/ieda/src.nix { };
-in
-{
+final: prev: {
   glog-lock = prev.glog.overrideAttrs (oldAttrs: rec {
     version = "0.6.0";
     src = final.fetchFromGitHub {
@@ -12,15 +8,10 @@ in
       sha256 = "sha256-xqRp9vaauBkKz2CXbh/Z4TWqhaUtqfbsSlbYZR/kW9s=";
     };
   });
-  ieda = prev.callPackage ./pkgs/ieda { inherit iedaSrc; };
 
-  rustpkgs = prev.callPackage ./pkgs/rustpkgs { inherit iedaSrc; };
-  iir-rust = final.rustpkgs.iir-rust;
-  liberty-parser = final.rustpkgs.liberty-parser;
-  sdf-parse = final.rustpkgs.sdf_parse;
-  spef-parser = final.rustpkgs.spef-parser;
-  vcd-parser = final.rustpkgs.vcd_parser;
-  verilog-parser = final.rustpkgs.verilog-parser;
+  iedaScope = final.callPackage ./pkgs/ieda { };
+  iedaSrcFetcher = final.callPackage ./pkgs/ieda/src.nix { };
+
   rustpkgs-all = final.symlinkJoin {
     name = "rustpkgs-all";
     paths = with final; [
