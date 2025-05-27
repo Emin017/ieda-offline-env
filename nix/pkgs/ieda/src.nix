@@ -73,7 +73,7 @@ stdenv.mkDerivation {
   installPhase = ''
     cp -r . $out
 
-    ${lib.optionals enableSubmodulesFixup ''
+    ${lib.optionalString enableSubmodulesFixup ''
       # Copy third-party submodules to the output directory
       cp -r ${LSAssigner4iEDA-src}/* $out/src/third_party/LSAssigner4iEDA
       cp -r ${spectra-src}/* $out/src/third_party/spectra
