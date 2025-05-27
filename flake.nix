@@ -13,6 +13,9 @@
       treefmt-nix,
       ...
     }:
+    let
+      overlay = import ./nix/overlay.nix;
+    in
     parts.lib.mkFlake { inherit inputs; } {
       imports = [
         treefmt-nix.flakeModule
@@ -23,6 +26,7 @@
         "x86_64-darwin"
         "aarch64-darwin"
       ];
+      flake.overlays.default = overlay;
       perSystem =
         {
           self',
@@ -32,16 +36,12 @@
           ...
         }:
         {
-          _module.args.pkgs =
-            let
-              overlay = import ./nix/overlay.nix;
-            in
-            import inputs.nixpkgs {
-              inherit system;
-              overlays = [
-                overlay
-              ];
-            };
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              overlay
+            ];
+          };
           treefmt = {
             projectRootFile = "flake.nix";
             programs = {
@@ -51,9 +51,9 @@
             flakeCheck = true;
           };
           packages = {
-            default = pkgs.ieda;
+            default = pkgs.iedaScope.ieda;
+            ieda = pkgs.iedaScope.ieda;
             inherit (pkgs)
-              ieda
               offlineDevBundle
               releaseDocker
               ;
