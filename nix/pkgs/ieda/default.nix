@@ -3,7 +3,7 @@
   newScope,
 }:
 lib.makeScope newScope (scope: {
-  ieda = scope.callPackage ./ieda.nix { };
+  ieda = scope.callPackage ./ieda.nix { iedaSrc = scope.iedaSrc; };
   iedaSrc = scope.callPackage ./src.nix {};
   rustpkgs = scope.callPackage ./rustpkgs { iedaSrc = scope.iedaSrc; };
   iir-rust = scope.rustpkgs.iir-rust;
