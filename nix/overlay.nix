@@ -24,7 +24,6 @@ in
   });
 
   iedaScope = final.callPackage ./pkgs/ieda { };
-  iedaSrcFetcher = final.callPackage ./pkgs/ieda/src.nix { };
 
   rustpkgs-all = final.symlinkJoin {
     name = "rustpkgs-all";
