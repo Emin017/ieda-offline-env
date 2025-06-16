@@ -1,4 +1,4 @@
-{ pkgs, self', ... }:
+{ pkgs, ... }:
 {
   devShells = {
     default =
@@ -11,7 +11,7 @@
     ieda =
       with pkgs;
       mkShell {
-        inputsFrom = [ self'.packages.default ];
+        inputsFrom = [ pkgs.iedaScope.ieda ];
         buildInputs = [
           cmake
         ];
