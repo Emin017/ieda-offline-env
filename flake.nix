@@ -1,4 +1,11 @@
 {
+  nixConfig = {
+    extra-trusted-substituters = [
+      "https://serve.eminrepo.cc/"
+    ];
+    extra-trusted-public-keys = [ "serve.eminrepo.cc:fgdTGDMn75Z0NOvTmus/Z9Fyh6ExgoqddNVkaYVi5qk=" ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     parts.url = "github:hercules-ci/flake-parts";
@@ -29,7 +36,7 @@
       flake.overlays.default = overlay;
       flake.hydraJobs = {
         x86_64-linux = {
-          iedaUnstable = inputs.self.packages.x86_64-linux.ieda;
+          iedaUnstable = inputs.self.packages.x86_64-linux.iedaUnstable;
         };
       };
       perSystem =
@@ -51,9 +58,8 @@
             ];
           };
           packages = {
-            default = pkgs.iedaScope.ieda;
+            default = pkgs.iedaScope.iedaUnstable;
             inherit (pkgs.iedaScope)
-              ieda
               iedaUnstable
               ;
             inherit (pkgs)

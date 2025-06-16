@@ -5,11 +5,11 @@
 }:
 stdenv.mkDerivation {
   pname = "iEDA-src";
-  version = "0-unstable-2025-05-30";
+  version = "0-unstable-2025-06-05";
   src = fetchgit {
     url = "https://gitee.com/oscc-project/iEDA";
-    rev = "3096147fcea491c381da2928be6fb5a12c2d97b7";
-    sha256 = "sha256-rPkcE+QFMlEuwwJ/QBgyLTXP5lWLQPj5SOlZysJ6WTI=";
+    rev = "7afa129e1dd2274e0c800ad7a6daa3219d06bf59";
+    sha256 = "sha256-rP8hs4+5DfGLIOhphm3DsyOyOm/tP+/sd8Q6XS0FEaA=";
     fetchSubmodules = true;
   };
 
@@ -30,8 +30,8 @@ stdenv.mkDerivation {
     # which is caused by some incorrect declarations and usages of the Boost library.
     # Should be removed after we upstream these changes.
     (fetchpatch {
-      url = "https://github.com/Emin017/iEDA/commit/3a2c7e27a5bd349d72b3a7198358cd640c678802.patch";
-      hash = "sha256-2YROkQ92jGOJZr+4+LrwRJKxhA39Bypb1xFdo6aftu8=";
+      url = "https://github.com/Emin017/iEDA/commit/f5464cc40a2c671c5d405f16b509e2fa8d54f7f1.patch";
+      hash = "sha256-uVMV/CjkX9oLexHJbQvnEDOET/ZqsEPreI6EQb3Z79s=";
     })
   ];
   dontBuild = true;
