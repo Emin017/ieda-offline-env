@@ -29,9 +29,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v31
       - name: Build iEDA
-        run: nix build -L '.#iedaUnstable'
+        run: nix build -L '.#iedaUnstable' --accept-flake-config
       - name: Build iEDA Bundle
-        run: nix bundle -L '.#iedaUnstable'
+        run: nix bundle -L '.#iedaUnstable' --accept-flake-config
       - name: Upload iEDA Offline Bundle
         uses: actions/upload-artifact@v4.6.2
         with:
