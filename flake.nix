@@ -52,7 +52,10 @@
           };
           packages = {
             default = pkgs.iedaScope.ieda;
-            ieda = pkgs.iedaScope.ieda;
+            inherit (pkgs.iedaScope)
+              ieda
+              iedaUnstable
+              ;
             inherit (pkgs)
               offlineDevBundle
               releaseDocker
