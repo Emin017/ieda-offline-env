@@ -11,7 +11,7 @@
     ieda =
       with pkgs;
       mkShell {
-        inputsFrom = [ pkgs.iedaScope.ieda ];
+        inputsFrom = [ pkgs.iedaScope.iedaUnstable ];
         buildInputs = [
           cmake
         ];

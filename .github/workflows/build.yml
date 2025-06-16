@@ -29,9 +29,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v31
       - name: Build iEDA
-        run: nix build -L '.#ieda'
+        run: nix build -L '.#iedaUnstable'
       - name: Build iEDA Bundle
-        run: nix bundle -L --bundler github:NixOS/bundlers#toRPM '.#ieda'
+        run: nix bundle -L '.#iedaUnstable'
       - name: Upload iEDA Offline Bundle
         uses: actions/upload-artifact@v4.6.2
         with:
