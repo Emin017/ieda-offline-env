@@ -35,8 +35,8 @@ jobs:
       - name: Upload iEDA Offline Bundle
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: iEDA-Offline-Bundle-RPM
-          path: rpm-single-ieda/*.rpm
+          name: iEDA-Bundle
+          path: ieda-arx
 
   build-docker:
     name: Build Docker on ${{ matrix.os }}
@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v31
       - name: Build iEDA Release Docker
-        run: nix build -L '.#releaseDocker'
+        run: nix build -L '.#releaseDocker' --accept-flake-config
       - name: Upload iEDA Release Docker
         uses: actions/upload-artifact@v4.6.2
         with:

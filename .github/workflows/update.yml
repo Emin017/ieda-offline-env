@@ -1,8 +1,7 @@
 name: Update flake lock
 on:
   schedule:
-    # Trigger every Monday and Thursday at 8:00 UTC
-    - cron: '0 8 * * 3'
+    - cron: '0 8 * * 1'
   workflow_dispatch: # Allow manual triggering
 jobs:
   update-flake-lock:
@@ -16,9 +15,9 @@ jobs:
       - name: Update flake lock
         run: nix flake update
       - name: Build iEDA
-        run: nix build '.#ieda'
+        run: nix build -L '.#ieda'
       - name: Build iEDA Bundle
-        run: nix bundle -L --bundler github:NixOS/bundlers#toRPM '.#ieda' 
+        run: nix bundle -L '.#ieda'
       - name: Build iEDA Release Docker
         run: nix build -L '.#releaseDocker'
       - name: Create Pull Request
