@@ -1,15 +1,15 @@
-# ✨ ieda offline environment
+# ✨ ieda infrastructure
 
 <div align="center">
 
-![GitHub](https://img.shields.io/github/license/Emin017/ieda-offline-env)
-![GitHub workflows](https://img.shields.io/github/actions/workflow/status/Emin017/ieda-offline-env/build.yml)
-![GitHub issues](https://img.shields.io/github/issues/Emin017/ieda-offline-env)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/Emin017/ieda-offline-env)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Emin017/ieda-offline-env)
+![GitHub](https://img.shields.io/github/license/Emin017/ieda-infra)
+![GitHub workflows](https://img.shields.io/github/actions/workflow/status/Emin017/ieda-infra/build.yml)
+![GitHub issues](https://img.shields.io/github/issues/Emin017/ieda-infra)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Emin017/ieda-infra)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Emin017/ieda-infra)
 
-![GitHub stars](https://img.shields.io/github/stars/Emin017/ieda-offline-env?style=social)
-![GitHub forks](https://img.shields.io/github/forks/Emin017/ieda-offline-env?style=social)
+![GitHub stars](https://img.shields.io/github/stars/Emin017/ieda-infra?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Emin017/ieda-infra?style=social)
 
 [![English](https://img.shields.io/badge/English-README-2ea44f?style=for-the-badge)](README.md)
 [![中文](https://img.shields.io/badge/中文-介绍-FF6F61?style=for-the-badge)](README_CN.md)
@@ -18,7 +18,7 @@
 
 ## 项目介绍
 
-ieda-offline-env 是一个为 [iEDA](https://gitee.com/oscc-project/iEDA) 提供离线开发和运行环境的工具包。iEDA 是一套开源 EDA 基础架构和工具，用于从网表到 GDS 的 ASIC 设计流程。本项目提供了一个基于 Nix 的离线开发环境，并集成了所有 iEDA 依赖。
+ieda-infra 是一个为 [iEDA](https://gitee.com/oscc-project/iEDA) 提供开发和运行环境的工具包。iEDA 是一套开源 EDA 基础架构和工具，用于从网表到 GDS 的 ASIC 设计流程。本项目提供了一个基于 Nix 的开发环境，并集成了所有 iEDA 依赖。
 
 ## 功能特性
 
@@ -41,17 +41,27 @@ ieda-offline-env 是一个为 [iEDA](https://gitee.com/oscc-project/iEDA) 提供
 
 ```bash
 # 使用 Nix 构建并安装 iEDA
-nix build -L github:Emin017/ieda-offline-env#ieda
+nix build -L github:Emin017/ieda-infra#ieda
 ```
+
+> [!NOTE]
+> 我们提供了 x86_64 架构的 Hydra 构建，可以在 [Hydra Builds](https://hydra.eminrepo.cc/job/iEDA-Infra/iEDA-Infra/x86_64-linux.iedaUnstable/all) 中找到
+>
+> 我们可以通过使用二进制缓存来加速构建过程:
+> ```bash
+> nix build -L github:Emin017/ieda-infra#iedaUnstable \
+>   --option substituters "https://serve.eminrepo.cc/" \
+>   --option trusted-public-keys "serve.eminrepo.cc:fgdTGDMn75Z0NOvTmus/Z9Fyh6ExgoqddNVkaYVi5qk="
+> ```
 
 ### 使用 Nix 构建 iEDA
 
 ```bash
 # 打包 iEDA 以及所有依赖
 # 打包为 RPM 格式
-nix bundle -L --bundler github:NixOS/bundlers#toRPM github:Emin017/ieda-offline-env#ieda
+nix bundle -L --bundler github:NixOS/bundlers#toRPM github:Emin017/ieda-infra#ieda
 # 打包为 DEB 格式
-nix bundle -L --bundler github:NixOS/bundlers#toDEB github:Emin017/ieda-offline-env#ieda
+nix bundle -L --bundler github:NixOS/bundlers#toDEB github:Emin017/ieda-infra#ieda
 # 生成的包可以在离线环境中使用
 ```
 
@@ -59,14 +69,14 @@ nix bundle -L --bundler github:NixOS/bundlers#toDEB github:Emin017/ieda-offline-
 
 ```bash
 # 构建 Docker 镜像
-nix build github:Emin017/ieda-offline-env#releaseDocker
+nix build github:Emin017/ieda-infra#releaseDocker
 ```
 
 ### iEDA 离线编译环境包
 
 ```bash
 # 构建离线包
-nix build -L github:Emin017/ieda-offline-env#offlineDevBundle
+nix build -L github:Emin017/ieda-infra#offlineDevBundle
 
 # 生成的包可以复制到离线环境中用于编译 iEDA
 ```
@@ -83,7 +93,7 @@ nix build -L github:Emin017/ieda-offline-env#offlineDevBundle
 ## 项目结构
 
 ```
-ieda-offline-env/
+ieda-infra/
 ├── flake.nix              # Nix Flake 配置
 ├── nix/
 │   ├── overlay.nix        # Nix overlay 配置

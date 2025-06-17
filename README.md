@@ -1,15 +1,15 @@
-# ✨ ieda offline environment
+# ✨ ieda infrastructure
 
 <div align="center">
 
-![GitHub](https://img.shields.io/github/license/Emin017/ieda-offline-env)
-![GitHub workflows](https://img.shields.io/github/actions/workflow/status/Emin017/ieda-offline-env/build.yml)
-![GitHub issues](https://img.shields.io/github/issues/Emin017/ieda-offline-env)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/Emin017/ieda-offline-env)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Emin017/ieda-offline-env)
+![GitHub](https://img.shields.io/github/license/Emin017/ieda-infra)
+![GitHub workflows](https://img.shields.io/github/actions/workflow/status/Emin017/ieda-infra/build.yml)
+![GitHub issues](https://img.shields.io/github/issues/Emin017/ieda-infra)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Emin017/ieda-infra)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Emin017/ieda-infra)
 
-![GitHub stars](https://img.shields.io/github/stars/Emin017/ieda-offline-env?style=social)
-![GitHub forks](https://img.shields.io/github/forks/Emin017/ieda-offline-env?style=social)
+![GitHub stars](https://img.shields.io/github/stars/Emin017/ieda-infra?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Emin017/ieda-infra?style=social)
 
 [![English](https://img.shields.io/badge/English-README-2ea44f?style=for-the-badge)](README.md)
 [![中文](https://img.shields.io/badge/中文-介绍-FF6F61?style=for-the-badge)](README_CN.md)
@@ -18,7 +18,7 @@
 
 ## Project Introduction
 
-ieda-offline-env is a toolkit that provides offline development and runtime environments for [iEDA](https://gitee.com/oscc-project/iEDA). iEDA is an open-source EDA infrastructure and toolchain for ASIC design from netlist to GDS. This project offers a Nix-based offline development environment with all dependencies integrated for iEDA.
+ieda-infra is a toolkit that provides development and runtime environments for [iEDA](https://gitee.com/oscc-project/iEDA). iEDA is an open-source EDA infrastructure and toolchain for ASIC design from netlist to GDS. This project offers a Nix-based development environment with all dependencies integrated for iEDA.
 
 ## Features
 
@@ -41,17 +41,27 @@ ieda-offline-env is a toolkit that provides offline development and runtime envi
 
 ```bash
 # Build and install iEDA with Nix
-nix build -L github:Emin017/ieda-offline-env#ieda
+nix build -L github:Emin017/ieda-infra#ieda
 ```
+
+> [!NOTE]
+> We provide hydra builds for x86_64 architecture, which can be found in [Hydra Builds](https://hydra.eminrepo.cc/job/iEDA-Infra/iEDA-Infra/x86_64-linux.iedaUnstable/all)
+>
+> You can use the binary cache to speed up the build process:
+> ```bash
+> nix build -L github:Emin017/ieda-infra#iedaUnstable \
+>   --option substituters "https://serve.eminrepo.cc/" \
+>   --option trusted-public-keys "serve.eminrepo.cc:fgdTGDMn75Z0NOvTmus/Z9Fyh6ExgoqddNVkaYVi5qk="
+> ```
 
 ### Packaging iEDA with Dependencies
 
 ```bash
 # Package iEDA with all dependencies
 # As RPM format
-nix bundle -L --bundler github:NixOS/bundlers#toRPM github:Emin017/ieda-offline-env#ieda
+nix bundle -L --bundler github:NixOS/bundlers#toRPM github:Emin017/ieda-infra#ieda
 # As DEB format
-nix bundle -L --bundler github:NixOS/bundlers#toDEB github:Emin017/ieda-offline-env#ieda
+nix bundle -L --bundler github:NixOS/bundlers#toDEB github:Emin017/ieda-infra#ieda
 # The generated packages can be used in offline environments
 ```
 
@@ -59,14 +69,14 @@ nix bundle -L --bundler github:NixOS/bundlers#toDEB github:Emin017/ieda-offline-
 
 ```bash
 # Build Docker image
-nix build github:Emin017/ieda-offline-env#releaseDocker
+nix build github:Emin017/ieda-infra#releaseDocker
 ```
 
 ### iEDA Offline Compilation Environment Package
 
 ```bash
 # Build offline package
-nix build -L github:Emin017/ieda-offline-env#offlineDevBundle
+nix build -L github:Emin017/ieda-infra#offlineDevBundle
 
 # The generated package can be copied to offline environments for compiling iEDA
 ```
@@ -83,7 +93,7 @@ Using `RPM` as an example:
 ## Project Structure
 
 ```
-ieda-offline-env/
+ieda-infra/
 ├── flake.nix              # Nix Flake configuration
 ├── nix/
 │   ├── overlay.nix        # Nix overlay configuration
